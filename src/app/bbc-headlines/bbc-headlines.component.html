@@ -1,0 +1,22 @@
+<div class="container">
+  <h1 class="title">BBC News Headlines</h1>
+
+  <!-- Display a loading message -->
+  <p *ngIf="!error" class="loading">Loading headlines...</p>
+
+  <!-- Display an error message -->
+  <p *ngIf="error" class="error">{{ error }}</p>
+
+  <!-- Display the list of headlines with descriptions -->
+  <ul *ngIf="headlines.length; else noData" class="headlines-list">
+    <li *ngFor="let headline of headlines" class="headline-item">
+      <h3 class="headline-title">{{ headline.heading }}</h3>
+      <p *ngIf="headline.description" class="headline-description">{{ headline.description }}</p>
+    </li>
+  </ul>
+
+  <!-- Display a message when no data is available -->
+  <ng-template #noData>
+    <p class="no-data">No headlines available. Please try again later.</p>
+  </ng-template>
+</div>

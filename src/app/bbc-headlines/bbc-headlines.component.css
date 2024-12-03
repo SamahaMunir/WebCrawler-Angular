@@ -1,0 +1,64 @@
+/* General container styling */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+/* Title styling */
+.title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+
+/* Loading and error messages */
+.loading,
+.error {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+}
+
+/* No data message */
+.no-data {
+  text-align: center;
+  color: #999;
+  font-style: italic;
+}
+
+/* Headlines list styling */
+.headlines-list {
+  list-style: none;
+  padding: 0;
+}
+
+.headline-item {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.headline-item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.headline-title {
+  margin: 0;
+  color: #007bbc;
+  font-size: 1.2em;
+}
+
+.headline-description {
+  margin: 5px 0 0 0;
+  color: #555;
+  font-size: 0.9em;
+}
