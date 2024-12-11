@@ -492,7 +492,7 @@ import {
   ɵɵtwoWayProperty,
   ɵɵvalidateIframeAttribute,
   ɵɵviewQuery,
-  ɵɵviewQuerySignal
+  ɵɵviewQuerySignal,
 } from "./chunk-WOKEHLUA.js";
 export {
   ANIMATION_MODULE_TYPE,
@@ -991,6 +991,6 @@ export {
   ɵɵtwoWayProperty,
   ɵɵvalidateIframeAttribute,
   ɵɵviewQuery,
-  ɵɵviewQuerySignal
+  ɵɵviewQuerySignal,
 };
 //# sourceMappingURL=@angular_core.js.map

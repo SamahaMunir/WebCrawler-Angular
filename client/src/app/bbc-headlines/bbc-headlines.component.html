@@ -11,7 +11,9 @@
   <ul *ngIf="headlines.length; else noData" class="headlines-list">
     <li *ngFor="let headline of headlines" class="headline-item">
       <h3 class="headline-title">{{ headline.heading }}</h3>
-      <p *ngIf="headline.description" class="headline-description">{{ headline.description }}</p>
+      <p *ngIf="headline.description" class="headline-description">
+        {{ headline.description }}
+      </p>
     </li>
   </ul>
 

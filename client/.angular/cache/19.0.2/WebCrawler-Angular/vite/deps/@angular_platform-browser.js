@@ -1,6 +1,4 @@
-import {
-  withHttpTransferCache
-} from "./chunk-BD26NKK7.js";
+import { withHttpTransferCache } from "./chunk-BD26NKK7.js";
 import {
   CommonModule,
   DOCUMENT,
@@ -10,7 +8,7 @@ import {
   getDOM,
   isPlatformServer,
   parseCookieValue,
-  setRootDomAdapter
+  setRootDomAdapter,
 } from "./chunk-FMHBNRLG.js";
 import {
   APP_ID,
@@ -70,7 +68,7 @@ import {
   ɵɵdefineInjectable,
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
-  ɵɵinject
+  ɵɵinject,
 } from "./chunk-WOKEHLUA.js";
 
 // node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs
@@ -149,16 +147,21 @@ var BrowserGetTestability = class {
     _global["getAngularTestability"] = (elem, findInAncestors = true) => {
       const testability = registry.findTestabilityInTree(elem, findInAncestors);
       if (testability == null) {
-        throw new RuntimeError(5103, (typeof ngDevMode === "undefined" || ngDevMode) && "Could not find testability for element.");
+        throw new RuntimeError(
+          5103,
+          (typeof ngDevMode === "undefined" || ngDevMode) &&
+            "Could not find testability for element.",
+        );
       }
       return testability;
     };
-    _global["getAllAngularTestabilities"] = () => registry.getAllTestabilities();
+    _global["getAllAngularTestabilities"] = () =>
+      registry.getAllTestabilities();
     _global["getAllAngularRootElements"] = () => registry.getAllRootElements();
     const whenAllStable = (callback) => {
       const testabilities = _global["getAllAngularTestabilities"]();
       let count = testabilities.length;
-      const decrement = function() {
+      const decrement = function () {
         count--;
         if (count == 0) {
           callback();
@@ -198,15 +201,25 @@ var BrowserXhr = class _BrowserXhr {
   };
   static ɵprov = ɵɵdefineInjectable({
     token: _BrowserXhr,
-    factory: _BrowserXhr.ɵfac
+    factory: _BrowserXhr.ɵfac,
   });
 };
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(BrowserXhr, [{
-    type: Injectable
-  }], null, null);
+  (typeof ngDevMode === "undefined" || ngDevMode) &&
+    setClassMetadata(
+      BrowserXhr,
+      [
+        {
+          type: Injectable,
+        },
+      ],
+      null,
+      null,
+    );
 })();
-var EVENT_MANAGER_PLUGINS = new InjectionToken(ngDevMode ? "EventManagerPlugins" : "");
+var EVENT_MANAGER_PLUGINS = new InjectionToken(
+  ngDevMode ? "EventManagerPlugins" : "",
+);
 var EventManager = class _EventManager {
   _zone;
   _plugins;
@@ -249,31 +262,51 @@ var EventManager = class _EventManager {
     const plugins = this._plugins;
     plugin = plugins.find((plugin2) => plugin2.supports(eventName));
     if (!plugin) {
-      throw new RuntimeError(5101, (typeof ngDevMode === "undefined" || ngDevMode) && `No event manager plugin found for event ${eventName}`);
+      throw new RuntimeError(
+        5101,
+        (typeof ngDevMode === "undefined" || ngDevMode) &&
+          `No event manager plugin found for event ${eventName}`,
+      );
     }
     this._eventNameToPlugin.set(eventName, plugin);
     return plugin;
   }
   static ɵfac = function EventManager_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _EventManager)(ɵɵinject(EVENT_MANAGER_PLUGINS), ɵɵinject(NgZone));
+    return new (__ngFactoryType__ || _EventManager)(
+      ɵɵinject(EVENT_MANAGER_PLUGINS),
+      ɵɵinject(NgZone),
+    );
   };
   static ɵprov = ɵɵdefineInjectable({
     token: _EventManager,
-    factory: _EventManager.ɵfac
+    factory: _EventManager.ɵfac,
   });
 };
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(EventManager, [{
-    type: Injectable
-  }], () => [{
-    type: void 0,
-    decorators: [{
-      type: Inject,
-      args: [EVENT_MANAGER_PLUGINS]
-    }]
-  }, {
-    type: NgZone
-  }], null);
+  (typeof ngDevMode === "undefined" || ngDevMode) &&
+    setClassMetadata(
+      EventManager,
+      [
+        {
+          type: Injectable,
+        },
+      ],
+      () => [
+        {
+          type: void 0,
+          decorators: [
+            {
+              type: Inject,
+              args: [EVENT_MANAGER_PLUGINS],
+            },
+          ],
+        },
+        {
+          type: NgZone,
+        },
+      ],
+      null,
+    );
 })();
 var EventManagerPlugin = class {
   _doc;
@@ -296,14 +329,16 @@ function createStyleElement(style, doc) {
   return styleElement;
 }
 function addServerStyles(doc, appId, usages) {
-  const styleElements = doc.head?.querySelectorAll(`style[${APP_ID_ATTRIBUTE_NAME}="${appId}"]`);
+  const styleElements = doc.head?.querySelectorAll(
+    `style[${APP_ID_ATTRIBUTE_NAME}="${appId}"]`,
+  );
   if (styleElements) {
     for (const styleElement of styleElements) {
       if (styleElement.textContent) {
         styleElement.removeAttribute(APP_ID_ATTRIBUTE_NAME);
         usages.set(styleElement.textContent, {
           usage: 0,
-          elements: [styleElement]
+          elements: [styleElement],
         });
       }
     }
@@ -353,7 +388,9 @@ var SharedStylesHost = class _SharedStylesHost {
     for (const value of styles) {
       this.addUsage(value, this.inline, createStyleElement);
     }
-    urls?.forEach((value) => this.addUsage(value, this.external, createLinkElement));
+    urls?.forEach((value) =>
+      this.addUsage(value, this.external, createLinkElement),
+    );
   }
   /**
    * Removes embedded styles from the DOM that were added as HTML `style` elements.
@@ -368,14 +405,21 @@ var SharedStylesHost = class _SharedStylesHost {
   addUsage(value, usages, creator) {
     const record = usages.get(value);
     if (record) {
-      if ((typeof ngDevMode === "undefined" || ngDevMode) && record.usage === 0) {
-        record.elements.forEach((element) => element.setAttribute("ng-style-reused", ""));
+      if (
+        (typeof ngDevMode === "undefined" || ngDevMode) &&
+        record.usage === 0
+      ) {
+        record.elements.forEach((element) =>
+          element.setAttribute("ng-style-reused", ""),
+        );
       }
       record.usage++;
     } else {
       usages.set(value, {
         usage: 1,
-        elements: [...this.hosts].map((host) => this.addElement(host, creator(value, this.doc)))
+        elements: [...this.hosts].map((host) =>
+          this.addElement(host, creator(value, this.doc)),
+        ),
       });
     }
   }
@@ -390,9 +434,7 @@ var SharedStylesHost = class _SharedStylesHost {
     }
   }
   ngOnDestroy() {
-    for (const [, {
-      elements
-    }] of [...this.inline, ...this.external]) {
+    for (const [, { elements }] of [...this.inline, ...this.external]) {
       removeElements(elements);
     }
     this.hosts.clear();
@@ -405,15 +447,15 @@ var SharedStylesHost = class _SharedStylesHost {
    */
   addHost(hostNode) {
     this.hosts.add(hostNode);
-    for (const [style, {
-      elements
-    }] of this.inline) {
-      elements.push(this.addElement(hostNode, createStyleElement(style, this.doc)));
+    for (const [style, { elements }] of this.inline) {
+      elements.push(
+        this.addElement(hostNode, createStyleElement(style, this.doc)),
+      );
     }
-    for (const [url, {
-      elements
-    }] of this.external) {
-      elements.push(this.addElement(hostNode, createLinkElement(url, this.doc)));
+    for (const [url, { elements }] of this.external) {
+      elements.push(
+        this.addElement(hostNode, createLinkElement(url, this.doc)),
+      );
     }
   }
   removeHost(hostNode) {
@@ -429,61 +471,91 @@ var SharedStylesHost = class _SharedStylesHost {
     return host.appendChild(element);
   }
   static ɵfac = function SharedStylesHost_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _SharedStylesHost)(ɵɵinject(DOCUMENT), ɵɵinject(APP_ID), ɵɵinject(CSP_NONCE, 8), ɵɵinject(PLATFORM_ID));
+    return new (__ngFactoryType__ || _SharedStylesHost)(
+      ɵɵinject(DOCUMENT),
+      ɵɵinject(APP_ID),
+      ɵɵinject(CSP_NONCE, 8),
+      ɵɵinject(PLATFORM_ID),
+    );
   };
   static ɵprov = ɵɵdefineInjectable({
     token: _SharedStylesHost,
-    factory: _SharedStylesHost.ɵfac
+    factory: _SharedStylesHost.ɵfac,
   });
 };
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(SharedStylesHost, [{
-    type: Injectable
-  }], () => [{
-    type: Document,
-    decorators: [{
-      type: Inject,
-      args: [DOCUMENT]
-    }]
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Inject,
-      args: [APP_ID]
-    }]
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Inject,
-      args: [CSP_NONCE]
-    }, {
-      type: Optional
-    }]
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Inject,
-      args: [PLATFORM_ID]
-    }]
-  }], null);
+  (typeof ngDevMode === "undefined" || ngDevMode) &&
+    setClassMetadata(
+      SharedStylesHost,
+      [
+        {
+          type: Injectable,
+        },
+      ],
+      () => [
+        {
+          type: Document,
+          decorators: [
+            {
+              type: Inject,
+              args: [DOCUMENT],
+            },
+          ],
+        },
+        {
+          type: void 0,
+          decorators: [
+            {
+              type: Inject,
+              args: [APP_ID],
+            },
+          ],
+        },
+        {
+          type: void 0,
+          decorators: [
+            {
+              type: Inject,
+              args: [CSP_NONCE],
+            },
+            {
+              type: Optional,
+            },
+          ],
+        },
+        {
+          type: void 0,
+          decorators: [
+            {
+              type: Inject,
+              args: [PLATFORM_ID],
+            },
+          ],
+        },
+      ],
+      null,
+    );
 })();
 var NAMESPACE_URIS = {
-  "svg": "http://www.w3.org/2000/svg",
-  "xhtml": "http://www.w3.org/1999/xhtml",
-  "xlink": "http://www.w3.org/1999/xlink",
-  "xml": "http://www.w3.org/XML/1998/namespace",
-  "xmlns": "http://www.w3.org/2000/xmlns/",
-  "math": "http://www.w3.org/1998/Math/MathML"
+  svg: "http://www.w3.org/2000/svg",
+  xhtml: "http://www.w3.org/1999/xhtml",
+  xlink: "http://www.w3.org/1999/xlink",
+  xml: "http://www.w3.org/XML/1998/namespace",
+  xmlns: "http://www.w3.org/2000/xmlns/",
+  math: "http://www.w3.org/1998/Math/MathML",
 };
 var COMPONENT_REGEX = /%COMP%/g;
 var COMPONENT_VARIABLE = "%COMP%";
 var HOST_ATTR = `_nghost-${COMPONENT_VARIABLE}`;
 var CONTENT_ATTR = `_ngcontent-${COMPONENT_VARIABLE}`;
 var REMOVE_STYLES_ON_COMPONENT_DESTROY_DEFAULT = true;
-var REMOVE_STYLES_ON_COMPONENT_DESTROY = new InjectionToken(ngDevMode ? "RemoveStylesOnCompDestroy" : "", {
-  providedIn: "root",
-  factory: () => REMOVE_STYLES_ON_COMPONENT_DESTROY_DEFAULT
-});
+var REMOVE_STYLES_ON_COMPONENT_DESTROY = new InjectionToken(
+  ngDevMode ? "RemoveStylesOnCompDestroy" : "",
+  {
+    providedIn: "root",
+    factory: () => REMOVE_STYLES_ON_COMPONENT_DESTROY_DEFAULT,
+  },
+);
 function shimContentAttribute(componentShortId) {
   return CONTENT_ATTR.replace(COMPONENT_REGEX, componentShortId);
 }
@@ -505,7 +577,16 @@ var DomRendererFactory2 = class _DomRendererFactory2 {
   rendererByCompId = /* @__PURE__ */ new Map();
   defaultRenderer;
   platformIsServer;
-  constructor(eventManager, sharedStylesHost, appId, removeStylesOnCompDestroy, doc, platformId, ngZone, nonce = null) {
+  constructor(
+    eventManager,
+    sharedStylesHost,
+    appId,
+    removeStylesOnCompDestroy,
+    doc,
+    platformId,
+    ngZone,
+    nonce = null,
+  ) {
     this.eventManager = eventManager;
     this.sharedStylesHost = sharedStylesHost;
     this.appId = appId;
@@ -515,15 +596,23 @@ var DomRendererFactory2 = class _DomRendererFactory2 {
     this.ngZone = ngZone;
     this.nonce = nonce;
     this.platformIsServer = isPlatformServer(platformId);
-    this.defaultRenderer = new DefaultDomRenderer2(eventManager, doc, ngZone, this.platformIsServer);
+    this.defaultRenderer = new DefaultDomRenderer2(
+      eventManager,
+      doc,
+      ngZone,
+      this.platformIsServer,
+    );
   }
   createRenderer(element, type) {
     if (!element || !type) {
       return this.defaultRenderer;
     }
-    if (this.platformIsServer && type.encapsulation === ViewEncapsulation.ShadowDom) {
+    if (
+      this.platformIsServer &&
+      type.encapsulation === ViewEncapsulation.ShadowDom
+    ) {
       type = __spreadProps(__spreadValues({}, type), {
-        encapsulation: ViewEncapsulation.Emulated
+        encapsulation: ViewEncapsulation.Emulated,
       });
     }
     const renderer = this.getOrCreateRenderer(element, type);
@@ -546,12 +635,38 @@ var DomRendererFactory2 = class _DomRendererFactory2 {
       const platformIsServer = this.platformIsServer;
       switch (type.encapsulation) {
         case ViewEncapsulation.Emulated:
-          renderer = new EmulatedEncapsulationDomRenderer2(eventManager, sharedStylesHost, type, this.appId, removeStylesOnCompDestroy, doc, ngZone, platformIsServer);
+          renderer = new EmulatedEncapsulationDomRenderer2(
+            eventManager,
+            sharedStylesHost,
+            type,
+            this.appId,
+            removeStylesOnCompDestroy,
+            doc,
+            ngZone,
+            platformIsServer,
+          );
           break;
         case ViewEncapsulation.ShadowDom:
-          return new ShadowDomRenderer(eventManager, sharedStylesHost, element, type, doc, ngZone, this.nonce, platformIsServer);
+          return new ShadowDomRenderer(
+            eventManager,
+            sharedStylesHost,
+            element,
+            type,
+            doc,
+            ngZone,
+            this.nonce,
+            platformIsServer,
+          );
         default:
-          renderer = new NoneEncapsulationDomRenderer(eventManager, sharedStylesHost, type, removeStylesOnCompDestroy, doc, ngZone, platformIsServer);
+          renderer = new NoneEncapsulationDomRenderer(
+            eventManager,
+            sharedStylesHost,
+            type,
+            removeStylesOnCompDestroy,
+            doc,
+            ngZone,
+            platformIsServer,
+          );
           break;
       }
       rendererByCompId.set(type.id, renderer);
@@ -562,53 +677,89 @@ var DomRendererFactory2 = class _DomRendererFactory2 {
     this.rendererByCompId.clear();
   }
   static ɵfac = function DomRendererFactory2_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _DomRendererFactory2)(ɵɵinject(EventManager), ɵɵinject(SharedStylesHost), ɵɵinject(APP_ID), ɵɵinject(REMOVE_STYLES_ON_COMPONENT_DESTROY), ɵɵinject(DOCUMENT), ɵɵinject(PLATFORM_ID), ɵɵinject(NgZone), ɵɵinject(CSP_NONCE));
+    return new (__ngFactoryType__ || _DomRendererFactory2)(
+      ɵɵinject(EventManager),
+      ɵɵinject(SharedStylesHost),
+      ɵɵinject(APP_ID),
+      ɵɵinject(REMOVE_STYLES_ON_COMPONENT_DESTROY),
+      ɵɵinject(DOCUMENT),
+      ɵɵinject(PLATFORM_ID),
+      ɵɵinject(NgZone),
+      ɵɵinject(CSP_NONCE),
+    );
   };
   static ɵprov = ɵɵdefineInjectable({
     token: _DomRendererFactory2,
-    factory: _DomRendererFactory2.ɵfac
+    factory: _DomRendererFactory2.ɵfac,
   });
 };
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(DomRendererFactory2, [{
-    type: Injectable
-  }], () => [{
-    type: EventManager
-  }, {
-    type: SharedStylesHost
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Inject,
-      args: [APP_ID]
-    }]
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Inject,
-      args: [REMOVE_STYLES_ON_COMPONENT_DESTROY]
-    }]
-  }, {
-    type: Document,
-    decorators: [{
-      type: Inject,
-      args: [DOCUMENT]
-    }]
-  }, {
-    type: Object,
-    decorators: [{
-      type: Inject,
-      args: [PLATFORM_ID]
-    }]
-  }, {
-    type: NgZone
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Inject,
-      args: [CSP_NONCE]
-    }]
-  }], null);
+  (typeof ngDevMode === "undefined" || ngDevMode) &&
+    setClassMetadata(
+      DomRendererFactory2,
+      [
+        {
+          type: Injectable,
+        },
+      ],
+      () => [
+        {
+          type: EventManager,
+        },
+        {
+          type: SharedStylesHost,
+        },
+        {
+          type: void 0,
+          decorators: [
+            {
+              type: Inject,
+              args: [APP_ID],
+            },
+          ],
+        },
+        {
+          type: void 0,
+          decorators: [
+            {
+              type: Inject,
+              args: [REMOVE_STYLES_ON_COMPONENT_DESTROY],
+            },
+          ],
+        },
+        {
+          type: Document,
+          decorators: [
+            {
+              type: Inject,
+              args: [DOCUMENT],
+            },
+          ],
+        },
+        {
+          type: Object,
+          decorators: [
+            {
+              type: Inject,
+              args: [PLATFORM_ID],
+            },
+          ],
+        },
+        {
+          type: NgZone,
+        },
+        {
+          type: void 0,
+          decorators: [
+            {
+              type: Inject,
+              args: [CSP_NONCE],
+            },
+          ],
+        },
+      ],
+      null,
+    );
 })();
 var DefaultDomRenderer2 = class {
   eventManager;
@@ -627,12 +778,14 @@ var DefaultDomRenderer2 = class {
     this.ngZone = ngZone;
     this.platformIsServer = platformIsServer;
   }
-  destroy() {
-  }
+  destroy() {}
   destroyNode = null;
   createElement(name, namespace) {
     if (namespace) {
-      return this.doc.createElementNS(NAMESPACE_URIS[namespace] || namespace, name);
+      return this.doc.createElementNS(
+        NAMESPACE_URIS[namespace] || namespace,
+        name,
+      );
     }
     return this.doc.createElement(name);
   }
@@ -656,9 +809,16 @@ var DefaultDomRenderer2 = class {
     oldChild.remove();
   }
   selectRootElement(selectorOrNode, preserveContent) {
-    let el = typeof selectorOrNode === "string" ? this.doc.querySelector(selectorOrNode) : selectorOrNode;
+    let el =
+      typeof selectorOrNode === "string"
+        ? this.doc.querySelector(selectorOrNode)
+        : selectorOrNode;
     if (!el) {
-      throw new RuntimeError(-5104, (typeof ngDevMode === "undefined" || ngDevMode) && `The selector "${selectorOrNode}" did not match any elements`);
+      throw new RuntimeError(
+        -5104,
+        (typeof ngDevMode === "undefined" || ngDevMode) &&
+          `The selector "${selectorOrNode}" did not match any elements`,
+      );
     }
     if (!preserveContent) {
       el.textContent = "";
@@ -703,8 +863,15 @@ var DefaultDomRenderer2 = class {
     el.classList.remove(name);
   }
   setStyle(el, style, value, flags) {
-    if (flags & (RendererStyleFlags2.DashCase | RendererStyleFlags2.Important)) {
-      el.style.setProperty(style, value, flags & RendererStyleFlags2.Important ? "important" : "");
+    if (
+      flags &
+      (RendererStyleFlags2.DashCase | RendererStyleFlags2.Important)
+    ) {
+      el.style.setProperty(
+        style,
+        value,
+        flags & RendererStyleFlags2.Important ? "important" : "",
+      );
     } else {
       el.style[style] = value;
     }
@@ -720,28 +887,40 @@ var DefaultDomRenderer2 = class {
     if (el == null) {
       return;
     }
-    (typeof ngDevMode === "undefined" || ngDevMode) && this.throwOnSyntheticProps && checkNoSyntheticProp(name, "property");
+    (typeof ngDevMode === "undefined" || ngDevMode) &&
+      this.throwOnSyntheticProps &&
+      checkNoSyntheticProp(name, "property");
     el[name] = value;
   }
   setValue(node, value) {
     node.nodeValue = value;
   }
   listen(target, event, callback) {
-    (typeof ngDevMode === "undefined" || ngDevMode) && this.throwOnSyntheticProps && checkNoSyntheticProp(event, "listener");
+    (typeof ngDevMode === "undefined" || ngDevMode) &&
+      this.throwOnSyntheticProps &&
+      checkNoSyntheticProp(event, "listener");
     if (typeof target === "string") {
       target = getDOM().getGlobalEventTarget(this.doc, target);
       if (!target) {
-        throw new Error(`Unsupported event target ${target} for event ${event}`);
+        throw new Error(
+          `Unsupported event target ${target} for event ${event}`,
+        );
       }
     }
-    return this.eventManager.addEventListener(target, event, this.decoratePreventDefault(callback));
+    return this.eventManager.addEventListener(
+      target,
+      event,
+      this.decoratePreventDefault(callback),
+    );
   }
   decoratePreventDefault(eventHandler) {
     return (event) => {
       if (event === "__ngUnwrap__") {
         return eventHandler;
       }
-      const allowDefaultBehavior = this.platformIsServer ? this.ngZone.runGuarded(() => eventHandler(event)) : eventHandler(event);
+      const allowDefaultBehavior = this.platformIsServer
+        ? this.ngZone.runGuarded(() => eventHandler(event))
+        : eventHandler(event);
       if (allowDefaultBehavior === false) {
         event.preventDefault();
       }
@@ -752,9 +931,12 @@ var DefaultDomRenderer2 = class {
 var AT_CHARCODE = (() => "@".charCodeAt(0))();
 function checkNoSyntheticProp(name, nameKind) {
   if (name.charCodeAt(0) === AT_CHARCODE) {
-    throw new RuntimeError(5105, `Unexpected synthetic ${nameKind} ${name} found. Please make sure that:
+    throw new RuntimeError(
+      5105,
+      `Unexpected synthetic ${nameKind} ${name} found. Please make sure that:
   - Either \`BrowserAnimationsModule\` or \`NoopAnimationsModule\` are imported in your application.
-  - There is corresponding configuration for the animation named \`${name}\` defined in the \`animations\` field of the \`@Component\` decorator (see https://angular.io/api/core/Component#animations).`);
+  - There is corresponding configuration for the animation named \`${name}\` defined in the \`animations\` field of the \`@Component\` decorator (see https://angular.io/api/core/Component#animations).`,
+    );
   }
 }
 function isTemplateNode(node) {
@@ -764,12 +946,21 @@ var ShadowDomRenderer = class extends DefaultDomRenderer2 {
   sharedStylesHost;
   hostEl;
   shadowRoot;
-  constructor(eventManager, sharedStylesHost, hostEl, component, doc, ngZone, nonce, platformIsServer) {
+  constructor(
+    eventManager,
+    sharedStylesHost,
+    hostEl,
+    component,
+    doc,
+    ngZone,
+    nonce,
+    platformIsServer,
+  ) {
     super(eventManager, doc, ngZone, platformIsServer);
     this.sharedStylesHost = sharedStylesHost;
     this.hostEl = hostEl;
     this.shadowRoot = hostEl.attachShadow({
-      mode: "open"
+      mode: "open",
     });
     this.sharedStylesHost.addHost(this.shadowRoot);
     const styles = shimStylesContent(component.id, component.styles);
@@ -799,7 +990,11 @@ var ShadowDomRenderer = class extends DefaultDomRenderer2 {
     return super.appendChild(this.nodeOrShadowRoot(parent), newChild);
   }
   insertBefore(parent, newChild, refChild) {
-    return super.insertBefore(this.nodeOrShadowRoot(parent), newChild, refChild);
+    return super.insertBefore(
+      this.nodeOrShadowRoot(parent),
+      newChild,
+      refChild,
+    );
   }
   removeChild(_parent, oldChild) {
     return super.removeChild(null, oldChild);
@@ -816,11 +1011,22 @@ var NoneEncapsulationDomRenderer = class extends DefaultDomRenderer2 {
   removeStylesOnCompDestroy;
   styles;
   styleUrls;
-  constructor(eventManager, sharedStylesHost, component, removeStylesOnCompDestroy, doc, ngZone, platformIsServer, compId) {
+  constructor(
+    eventManager,
+    sharedStylesHost,
+    component,
+    removeStylesOnCompDestroy,
+    doc,
+    ngZone,
+    platformIsServer,
+    compId,
+  ) {
     super(eventManager, doc, ngZone, platformIsServer);
     this.sharedStylesHost = sharedStylesHost;
     this.removeStylesOnCompDestroy = removeStylesOnCompDestroy;
-    this.styles = compId ? shimStylesContent(compId, component.styles) : component.styles;
+    this.styles = compId
+      ? shimStylesContent(compId, component.styles)
+      : component.styles;
     this.styleUrls = component.getExternalStyles?.(compId);
   }
   applyStyles() {
@@ -836,9 +1042,27 @@ var NoneEncapsulationDomRenderer = class extends DefaultDomRenderer2 {
 var EmulatedEncapsulationDomRenderer2 = class extends NoneEncapsulationDomRenderer {
   contentAttr;
   hostAttr;
-  constructor(eventManager, sharedStylesHost, component, appId, removeStylesOnCompDestroy, doc, ngZone, platformIsServer) {
+  constructor(
+    eventManager,
+    sharedStylesHost,
+    component,
+    appId,
+    removeStylesOnCompDestroy,
+    doc,
+    ngZone,
+    platformIsServer,
+  ) {
     const compId = appId + "-" + component.id;
-    super(eventManager, sharedStylesHost, component, removeStylesOnCompDestroy, doc, ngZone, platformIsServer, compId);
+    super(
+      eventManager,
+      sharedStylesHost,
+      component,
+      removeStylesOnCompDestroy,
+      doc,
+      ngZone,
+      platformIsServer,
+      compId,
+    );
     this.contentAttr = shimContentAttribute(compId);
     this.hostAttr = shimHostAttribute(compId);
   }
@@ -873,19 +1097,31 @@ var DomEventsPlugin = class _DomEventsPlugin extends EventManagerPlugin {
   };
   static ɵprov = ɵɵdefineInjectable({
     token: _DomEventsPlugin,
-    factory: _DomEventsPlugin.ɵfac
+    factory: _DomEventsPlugin.ɵfac,
   });
 };
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(DomEventsPlugin, [{
-    type: Injectable
-  }], () => [{
-    type: void 0,
-    decorators: [{
-      type: Inject,
-      args: [DOCUMENT]
-    }]
-  }], null);
+  (typeof ngDevMode === "undefined" || ngDevMode) &&
+    setClassMetadata(
+      DomEventsPlugin,
+      [
+        {
+          type: Injectable,
+        },
+      ],
+      () => [
+        {
+          type: void 0,
+          decorators: [
+            {
+              type: Inject,
+              args: [DOCUMENT],
+            },
+          ],
+        },
+      ],
+      null,
+    );
 })();
 var MODIFIER_KEYS = ["alt", "control", "meta", "shift"];
 var _keyMap = {
@@ -893,21 +1129,21 @@ var _keyMap = {
   "	": "Tab",
   "": "Delete",
   "\x1B": "Escape",
-  "Del": "Delete",
-  "Esc": "Escape",
-  "Left": "ArrowLeft",
-  "Right": "ArrowRight",
-  "Up": "ArrowUp",
-  "Down": "ArrowDown",
-  "Menu": "ContextMenu",
-  "Scroll": "ScrollLock",
-  "Win": "OS"
+  Del: "Delete",
+  Esc: "Escape",
+  Left: "ArrowLeft",
+  Right: "ArrowRight",
+  Up: "ArrowUp",
+  Down: "ArrowDown",
+  Menu: "ContextMenu",
+  Scroll: "ScrollLock",
+  Win: "OS",
 };
 var MODIFIER_KEY_GETTERS = {
-  "alt": (event) => event.altKey,
-  "control": (event) => event.ctrlKey,
-  "meta": (event) => event.metaKey,
-  "shift": (event) => event.shiftKey
+  alt: (event) => event.altKey,
+  control: (event) => event.ctrlKey,
+  meta: (event) => event.metaKey,
+  shift: (event) => event.shiftKey,
 };
 var KeyEventsPlugin = class _KeyEventsPlugin extends EventManagerPlugin {
   /**
@@ -935,9 +1171,17 @@ var KeyEventsPlugin = class _KeyEventsPlugin extends EventManagerPlugin {
    */
   addEventListener(element, eventName, handler) {
     const parsedEvent = _KeyEventsPlugin.parseEventName(eventName);
-    const outsideHandler = _KeyEventsPlugin.eventCallback(parsedEvent["fullKey"], handler, this.manager.getZone());
+    const outsideHandler = _KeyEventsPlugin.eventCallback(
+      parsedEvent["fullKey"],
+      handler,
+      this.manager.getZone(),
+    );
     return this.manager.getZone().runOutsideAngular(() => {
-      return getDOM().onAndCancel(element, parsedEvent["domEventName"], outsideHandler);
+      return getDOM().onAndCancel(
+        element,
+        parsedEvent["domEventName"],
+        outsideHandler,
+      );
     });
   }
   /**
@@ -952,7 +1196,10 @@ var KeyEventsPlugin = class _KeyEventsPlugin extends EventManagerPlugin {
   static parseEventName(eventName) {
     const parts = eventName.toLowerCase().split(".");
     const domEventName = parts.shift();
-    if (parts.length === 0 || !(domEventName === "keydown" || domEventName === "keyup")) {
+    if (
+      parts.length === 0 ||
+      !(domEventName === "keydown" || domEventName === "keyup")
+    ) {
       return null;
     }
     const key = _KeyEventsPlugin._normalizeKey(parts.pop());
@@ -1036,32 +1283,49 @@ var KeyEventsPlugin = class _KeyEventsPlugin extends EventManagerPlugin {
   };
   static ɵprov = ɵɵdefineInjectable({
     token: _KeyEventsPlugin,
-    factory: _KeyEventsPlugin.ɵfac
+    factory: _KeyEventsPlugin.ɵfac,
   });
 };
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(KeyEventsPlugin, [{
-    type: Injectable
-  }], () => [{
-    type: void 0,
-    decorators: [{
-      type: Inject,
-      args: [DOCUMENT]
-    }]
-  }], null);
+  (typeof ngDevMode === "undefined" || ngDevMode) &&
+    setClassMetadata(
+      KeyEventsPlugin,
+      [
+        {
+          type: Injectable,
+        },
+      ],
+      () => [
+        {
+          type: void 0,
+          decorators: [
+            {
+              type: Inject,
+              args: [DOCUMENT],
+            },
+          ],
+        },
+      ],
+      null,
+    );
 })();
 function bootstrapApplication(rootComponent, options) {
-  return internalCreateApplication(__spreadValues({
-    rootComponent
-  }, createProvidersConfig(options)));
+  return internalCreateApplication(
+    __spreadValues(
+      {
+        rootComponent,
+      },
+      createProvidersConfig(options),
+    ),
+  );
 }
 function createApplication(options) {
   return internalCreateApplication(createProvidersConfig(options));
 }
 function createProvidersConfig(options) {
   return {
-    appProviders: [...BROWSER_MODULE_PROVIDERS, ...options?.providers ?? []],
-    platformProviders: INTERNAL_BROWSER_PLATFORM_PROVIDERS
+    appProviders: [...BROWSER_MODULE_PROVIDERS, ...(options?.providers ?? [])],
+    platformProviders: INTERNAL_BROWSER_PLATFORM_PROVIDERS,
   };
 }
 function provideProtractorTestingSupport() {
@@ -1077,98 +1341,154 @@ function _document() {
   setDocument(document);
   return document;
 }
-var INTERNAL_BROWSER_PLATFORM_PROVIDERS = [{
-  provide: PLATFORM_ID,
-  useValue: PLATFORM_BROWSER_ID
-}, {
-  provide: PLATFORM_INITIALIZER,
-  useValue: initDomAdapter,
-  multi: true
-}, {
-  provide: DOCUMENT,
-  useFactory: _document,
-  deps: []
-}];
-var platformBrowser = createPlatformFactory(platformCore, "browser", INTERNAL_BROWSER_PLATFORM_PROVIDERS);
-var BROWSER_MODULE_PROVIDERS_MARKER = new InjectionToken(typeof ngDevMode === "undefined" || ngDevMode ? "BrowserModule Providers Marker" : "");
-var TESTABILITY_PROVIDERS = [{
-  provide: TESTABILITY_GETTER,
-  useClass: BrowserGetTestability,
-  deps: []
-}, {
-  provide: TESTABILITY,
-  useClass: Testability,
-  deps: [NgZone, TestabilityRegistry, TESTABILITY_GETTER]
-}, {
-  provide: Testability,
-  // Also provide as `Testability` for backwards-compatibility.
-  useClass: Testability,
-  deps: [NgZone, TestabilityRegistry, TESTABILITY_GETTER]
-}];
-var BROWSER_MODULE_PROVIDERS = [{
-  provide: INJECTOR_SCOPE,
-  useValue: "root"
-}, {
-  provide: ErrorHandler,
-  useFactory: errorHandler,
-  deps: []
-}, {
-  provide: EVENT_MANAGER_PLUGINS,
-  useClass: DomEventsPlugin,
-  multi: true,
-  deps: [DOCUMENT, NgZone, PLATFORM_ID]
-}, {
-  provide: EVENT_MANAGER_PLUGINS,
-  useClass: KeyEventsPlugin,
-  multi: true,
-  deps: [DOCUMENT]
-}, DomRendererFactory2, SharedStylesHost, EventManager, {
-  provide: RendererFactory2,
-  useExisting: DomRendererFactory2
-}, {
-  provide: XhrFactory,
-  useClass: BrowserXhr,
-  deps: []
-}, typeof ngDevMode === "undefined" || ngDevMode ? {
-  provide: BROWSER_MODULE_PROVIDERS_MARKER,
-  useValue: true
-} : []];
+var INTERNAL_BROWSER_PLATFORM_PROVIDERS = [
+  {
+    provide: PLATFORM_ID,
+    useValue: PLATFORM_BROWSER_ID,
+  },
+  {
+    provide: PLATFORM_INITIALIZER,
+    useValue: initDomAdapter,
+    multi: true,
+  },
+  {
+    provide: DOCUMENT,
+    useFactory: _document,
+    deps: [],
+  },
+];
+var platformBrowser = createPlatformFactory(
+  platformCore,
+  "browser",
+  INTERNAL_BROWSER_PLATFORM_PROVIDERS,
+);
+var BROWSER_MODULE_PROVIDERS_MARKER = new InjectionToken(
+  typeof ngDevMode === "undefined" || ngDevMode
+    ? "BrowserModule Providers Marker"
+    : "",
+);
+var TESTABILITY_PROVIDERS = [
+  {
+    provide: TESTABILITY_GETTER,
+    useClass: BrowserGetTestability,
+    deps: [],
+  },
+  {
+    provide: TESTABILITY,
+    useClass: Testability,
+    deps: [NgZone, TestabilityRegistry, TESTABILITY_GETTER],
+  },
+  {
+    provide: Testability,
+    // Also provide as `Testability` for backwards-compatibility.
+    useClass: Testability,
+    deps: [NgZone, TestabilityRegistry, TESTABILITY_GETTER],
+  },
+];
+var BROWSER_MODULE_PROVIDERS = [
+  {
+    provide: INJECTOR_SCOPE,
+    useValue: "root",
+  },
+  {
+    provide: ErrorHandler,
+    useFactory: errorHandler,
+    deps: [],
+  },
+  {
+    provide: EVENT_MANAGER_PLUGINS,
+    useClass: DomEventsPlugin,
+    multi: true,
+    deps: [DOCUMENT, NgZone, PLATFORM_ID],
+  },
+  {
+    provide: EVENT_MANAGER_PLUGINS,
+    useClass: KeyEventsPlugin,
+    multi: true,
+    deps: [DOCUMENT],
+  },
+  DomRendererFactory2,
+  SharedStylesHost,
+  EventManager,
+  {
+    provide: RendererFactory2,
+    useExisting: DomRendererFactory2,
+  },
+  {
+    provide: XhrFactory,
+    useClass: BrowserXhr,
+    deps: [],
+  },
+  typeof ngDevMode === "undefined" || ngDevMode
+    ? {
+        provide: BROWSER_MODULE_PROVIDERS_MARKER,
+        useValue: true,
+      }
+    : [],
+];
 var BrowserModule = class _BrowserModule {
   constructor(providersAlreadyPresent) {
-    if ((typeof ngDevMode === "undefined" || ngDevMode) && providersAlreadyPresent) {
-      throw new RuntimeError(5100, `Providers from the \`BrowserModule\` have already been loaded. If you need access to common directives such as NgIf and NgFor, import the \`CommonModule\` instead.`);
+    if (
+      (typeof ngDevMode === "undefined" || ngDevMode) &&
+      providersAlreadyPresent
+    ) {
+      throw new RuntimeError(
+        5100,
+        `Providers from the \`BrowserModule\` have already been loaded. If you need access to common directives such as NgIf and NgFor, import the \`CommonModule\` instead.`,
+      );
     }
   }
   static ɵfac = function BrowserModule_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _BrowserModule)(ɵɵinject(BROWSER_MODULE_PROVIDERS_MARKER, 12));
+    return new (__ngFactoryType__ || _BrowserModule)(
+      ɵɵinject(BROWSER_MODULE_PROVIDERS_MARKER, 12),
+    );
   };
   static ɵmod = ɵɵdefineNgModule({
     type: _BrowserModule,
-    exports: [CommonModule, ApplicationModule]
+    exports: [CommonModule, ApplicationModule],
   });
   static ɵinj = ɵɵdefineInjector({
     providers: [...BROWSER_MODULE_PROVIDERS, ...TESTABILITY_PROVIDERS],
-    imports: [CommonModule, ApplicationModule]
+    imports: [CommonModule, ApplicationModule],
   });
 };
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(BrowserModule, [{
-    type: NgModule,
-    args: [{
-      providers: [...BROWSER_MODULE_PROVIDERS, ...TESTABILITY_PROVIDERS],
-      exports: [CommonModule, ApplicationModule]
-    }]
-  }], () => [{
-    type: void 0,
-    decorators: [{
-      type: Optional
-    }, {
-      type: SkipSelf
-    }, {
-      type: Inject,
-      args: [BROWSER_MODULE_PROVIDERS_MARKER]
-    }]
-  }], null);
+  (typeof ngDevMode === "undefined" || ngDevMode) &&
+    setClassMetadata(
+      BrowserModule,
+      [
+        {
+          type: NgModule,
+          args: [
+            {
+              providers: [
+                ...BROWSER_MODULE_PROVIDERS,
+                ...TESTABILITY_PROVIDERS,
+              ],
+              exports: [CommonModule, ApplicationModule],
+            },
+          ],
+        },
+      ],
+      () => [
+        {
+          type: void 0,
+          decorators: [
+            {
+              type: Optional,
+            },
+            {
+              type: SkipSelf,
+            },
+            {
+              type: Inject,
+              args: [BROWSER_MODULE_PROVIDERS_MARKER],
+            },
+          ],
+        },
+      ],
+      null,
+    );
 })();
 var Meta = class _Meta {
   _doc;
@@ -1267,7 +1587,9 @@ var Meta = class _Meta {
   _getOrCreateElement(meta, forceCreation = false) {
     if (!forceCreation) {
       const selector = this._parseSelector(meta);
-      const elem = this.getTags(selector).filter((elem2) => this._containsAttributes(meta, elem2))[0];
+      const elem = this.getTags(selector).filter((elem2) =>
+        this._containsAttributes(meta, elem2),
+      )[0];
       if (elem !== void 0) return elem;
     }
     const element = this._dom.createElement("meta");
@@ -1277,7 +1599,9 @@ var Meta = class _Meta {
     return element;
   }
   _setMetaElementAttributes(tag, el) {
-    Object.keys(tag).forEach((prop) => el.setAttribute(this._getMetaKeyMap(prop), tag[prop]));
+    Object.keys(tag).forEach((prop) =>
+      el.setAttribute(this._getMetaKeyMap(prop), tag[prop]),
+    );
     return el;
   }
   _parseSelector(tag) {
@@ -1285,7 +1609,9 @@ var Meta = class _Meta {
     return `${attr}="${tag[attr]}"`;
   }
   _containsAttributes(tag, elem) {
-    return Object.keys(tag).every((key) => elem.getAttribute(this._getMetaKeyMap(key)) === tag[key]);
+    return Object.keys(tag).every(
+      (key) => elem.getAttribute(this._getMetaKeyMap(key)) === tag[key],
+    );
   }
   _getMetaKeyMap(prop) {
     return META_KEYS_MAP[prop] || prop;
@@ -1296,25 +1622,39 @@ var Meta = class _Meta {
   static ɵprov = ɵɵdefineInjectable({
     token: _Meta,
     factory: _Meta.ɵfac,
-    providedIn: "root"
+    providedIn: "root",
   });
 };
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(Meta, [{
-    type: Injectable,
-    args: [{
-      providedIn: "root"
-    }]
-  }], () => [{
-    type: void 0,
-    decorators: [{
-      type: Inject,
-      args: [DOCUMENT]
-    }]
-  }], null);
+  (typeof ngDevMode === "undefined" || ngDevMode) &&
+    setClassMetadata(
+      Meta,
+      [
+        {
+          type: Injectable,
+          args: [
+            {
+              providedIn: "root",
+            },
+          ],
+        },
+      ],
+      () => [
+        {
+          type: void 0,
+          decorators: [
+            {
+              type: Inject,
+              args: [DOCUMENT],
+            },
+          ],
+        },
+      ],
+      null,
+    );
 })();
 var META_KEYS_MAP = {
-  httpEquiv: "http-equiv"
+  httpEquiv: "http-equiv",
 };
 var Title = class _Title {
   _doc;
@@ -1340,26 +1680,40 @@ var Title = class _Title {
   static ɵprov = ɵɵdefineInjectable({
     token: _Title,
     factory: _Title.ɵfac,
-    providedIn: "root"
+    providedIn: "root",
   });
 };
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(Title, [{
-    type: Injectable,
-    args: [{
-      providedIn: "root"
-    }]
-  }], () => [{
-    type: void 0,
-    decorators: [{
-      type: Inject,
-      args: [DOCUMENT]
-    }]
-  }], null);
+  (typeof ngDevMode === "undefined" || ngDevMode) &&
+    setClassMetadata(
+      Title,
+      [
+        {
+          type: Injectable,
+          args: [
+            {
+              providedIn: "root",
+            },
+          ],
+        },
+      ],
+      () => [
+        {
+          type: void 0,
+          decorators: [
+            {
+              type: Inject,
+              args: [DOCUMENT],
+            },
+          ],
+        },
+      ],
+      null,
+    );
 })();
 function exportNgVar(name, value) {
   if (typeof COMPILED === "undefined" || !COMPILED) {
-    const ng = _global["ng"] = _global["ng"] || {};
+    const ng = (_global["ng"] = _global["ng"] || {});
     ng[name] = value;
   }
 }
@@ -1396,7 +1750,11 @@ var AngularProfiler = class {
   timeChangeDetection(config) {
     const record = config && config["record"];
     const profileName = "Change Detection";
-    if (record && "profile" in console && typeof console.profile === "function") {
+    if (
+      record &&
+      "profile" in console &&
+      typeof console.profile === "function"
+    ) {
       console.profile(profileName);
     }
     const start = performance.now();
@@ -1406,7 +1764,11 @@ var AngularProfiler = class {
       numTicks++;
     }
     const end = performance.now();
-    if (record && "profileEnd" in console && typeof console.profileEnd === "function") {
+    if (
+      record &&
+      "profileEnd" in console &&
+      typeof console.profileEnd === "function"
+    ) {
       console.profileEnd(profileName);
     }
     const msPerTick = (end - start) / numTicks;
@@ -1445,7 +1807,9 @@ var By = class {
    */
   static css(selector) {
     return (debugElement) => {
-      return debugElement.nativeElement != null ? elementMatches(debugElement.nativeElement, selector) : false;
+      return debugElement.nativeElement != null
+        ? elementMatches(debugElement.nativeElement, selector)
+        : false;
     };
   }
   /**
@@ -1462,47 +1826,51 @@ var By = class {
 };
 function elementMatches(n, selector) {
   if (getDOM().isElementNode(n)) {
-    return n.matches && n.matches(selector) || n.msMatchesSelector && n.msMatchesSelector(selector) || n.webkitMatchesSelector && n.webkitMatchesSelector(selector);
+    return (
+      (n.matches && n.matches(selector)) ||
+      (n.msMatchesSelector && n.msMatchesSelector(selector)) ||
+      (n.webkitMatchesSelector && n.webkitMatchesSelector(selector))
+    );
   }
   return false;
 }
 var EVENT_NAMES = {
   // pan
-  "pan": true,
-  "panstart": true,
-  "panmove": true,
-  "panend": true,
-  "pancancel": true,
-  "panleft": true,
-  "panright": true,
-  "panup": true,
-  "pandown": true,
+  pan: true,
+  panstart: true,
+  panmove: true,
+  panend: true,
+  pancancel: true,
+  panleft: true,
+  panright: true,
+  panup: true,
+  pandown: true,
   // pinch
-  "pinch": true,
-  "pinchstart": true,
-  "pinchmove": true,
-  "pinchend": true,
-  "pinchcancel": true,
-  "pinchin": true,
-  "pinchout": true,
+  pinch: true,
+  pinchstart: true,
+  pinchmove: true,
+  pinchend: true,
+  pinchcancel: true,
+  pinchin: true,
+  pinchout: true,
   // press
-  "press": true,
-  "pressup": true,
+  press: true,
+  pressup: true,
   // rotate
-  "rotate": true,
-  "rotatestart": true,
-  "rotatemove": true,
-  "rotateend": true,
-  "rotatecancel": true,
+  rotate: true,
+  rotatestart: true,
+  rotatemove: true,
+  rotateend: true,
+  rotatecancel: true,
   // swipe
-  "swipe": true,
-  "swipeleft": true,
-  "swiperight": true,
-  "swipeup": true,
-  "swipedown": true,
+  swipe: true,
+  swipeleft: true,
+  swiperight: true,
+  swipeup: true,
+  swipedown: true,
   // tap
-  "tap": true,
-  "doubletap": true
+  tap: true,
+  doubletap: true,
 };
 var HAMMER_GESTURE_CONFIG = new InjectionToken("HammerGestureConfig");
 var HAMMER_LOADER = new InjectionToken("HammerLoader");
@@ -1547,10 +1915,10 @@ var HammerGestureConfig = class _HammerGestureConfig {
   buildHammer(element) {
     const mc = new Hammer(element, this.options);
     mc.get("pinch").set({
-      enable: true
+      enable: true,
     });
     mc.get("rotate").set({
-      enable: true
+      enable: true,
     });
     for (const eventName in this.overrides) {
       mc.get(eventName).set(this.overrides[eventName]);
@@ -1562,13 +1930,21 @@ var HammerGestureConfig = class _HammerGestureConfig {
   };
   static ɵprov = ɵɵdefineInjectable({
     token: _HammerGestureConfig,
-    factory: _HammerGestureConfig.ɵfac
+    factory: _HammerGestureConfig.ɵfac,
   });
 };
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(HammerGestureConfig, [{
-    type: Injectable
-  }], null, null);
+  (typeof ngDevMode === "undefined" || ngDevMode) &&
+    setClassMetadata(
+      HammerGestureConfig,
+      [
+        {
+          type: Injectable,
+        },
+      ],
+      null,
+      null,
+    );
 })();
 var HammerGesturesPlugin = class _HammerGesturesPlugin extends EventManagerPlugin {
   _config;
@@ -1582,12 +1958,17 @@ var HammerGesturesPlugin = class _HammerGesturesPlugin extends EventManagerPlugi
     this.loader = loader;
   }
   supports(eventName) {
-    if (!EVENT_NAMES.hasOwnProperty(eventName.toLowerCase()) && !this.isCustomEvent(eventName)) {
+    if (
+      !EVENT_NAMES.hasOwnProperty(eventName.toLowerCase()) &&
+      !this.isCustomEvent(eventName)
+    ) {
       return false;
     }
     if (!window.Hammer && !this.loader) {
       if (typeof ngDevMode === "undefined" || ngDevMode) {
-        this.console.warn(`The "${eventName}" event cannot be bound because Hammer.JS is not loaded and no custom loader has been specified.`);
+        this.console.warn(
+          `The "${eventName}" event cannot be bound because Hammer.JS is not loaded and no custom loader has been specified.`,
+        );
       }
       return false;
     }
@@ -1597,38 +1978,45 @@ var HammerGesturesPlugin = class _HammerGesturesPlugin extends EventManagerPlugi
     const zone = this.manager.getZone();
     eventName = eventName.toLowerCase();
     if (!window.Hammer && this.loader) {
-      this._loaderPromise = this._loaderPromise || zone.runOutsideAngular(() => this.loader());
+      this._loaderPromise =
+        this._loaderPromise || zone.runOutsideAngular(() => this.loader());
       let cancelRegistration = false;
       let deregister = () => {
         cancelRegistration = true;
       };
-      zone.runOutsideAngular(() => this._loaderPromise.then(() => {
-        if (!window.Hammer) {
-          if (typeof ngDevMode === "undefined" || ngDevMode) {
-            this.console.warn(`The custom HAMMER_LOADER completed, but Hammer.JS is not present.`);
-          }
-          deregister = () => {
-          };
-          return;
-        }
-        if (!cancelRegistration) {
-          deregister = this.addEventListener(element, eventName, handler);
-        }
-      }).catch(() => {
-        if (typeof ngDevMode === "undefined" || ngDevMode) {
-          this.console.warn(`The "${eventName}" event cannot be bound because the custom Hammer.JS loader failed.`);
-        }
-        deregister = () => {
-        };
-      }));
+      zone.runOutsideAngular(() =>
+        this._loaderPromise
+          .then(() => {
+            if (!window.Hammer) {
+              if (typeof ngDevMode === "undefined" || ngDevMode) {
+                this.console.warn(
+                  `The custom HAMMER_LOADER completed, but Hammer.JS is not present.`,
+                );
+              }
+              deregister = () => {};
+              return;
+            }
+            if (!cancelRegistration) {
+              deregister = this.addEventListener(element, eventName, handler);
+            }
+          })
+          .catch(() => {
+            if (typeof ngDevMode === "undefined" || ngDevMode) {
+              this.console.warn(
+                `The "${eventName}" event cannot be bound because the custom Hammer.JS loader failed.`,
+              );
+            }
+            deregister = () => {};
+          }),
+      );
       return () => {
         deregister();
       };
     }
     return zone.runOutsideAngular(() => {
       const mc = this._config.buildHammer(element);
-      const callback = function(eventObj) {
-        zone.runGuarded(function() {
+      const callback = function (eventObj) {
+        zone.runGuarded(function () {
           handler(eventObj);
         });
       };
@@ -1645,76 +2033,127 @@ var HammerGesturesPlugin = class _HammerGesturesPlugin extends EventManagerPlugi
     return this._config.events.indexOf(eventName) > -1;
   }
   static ɵfac = function HammerGesturesPlugin_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _HammerGesturesPlugin)(ɵɵinject(DOCUMENT), ɵɵinject(HAMMER_GESTURE_CONFIG), ɵɵinject(Console), ɵɵinject(HAMMER_LOADER, 8));
+    return new (__ngFactoryType__ || _HammerGesturesPlugin)(
+      ɵɵinject(DOCUMENT),
+      ɵɵinject(HAMMER_GESTURE_CONFIG),
+      ɵɵinject(Console),
+      ɵɵinject(HAMMER_LOADER, 8),
+    );
   };
   static ɵprov = ɵɵdefineInjectable({
     token: _HammerGesturesPlugin,
-    factory: _HammerGesturesPlugin.ɵfac
+    factory: _HammerGesturesPlugin.ɵfac,
   });
 };
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(HammerGesturesPlugin, [{
-    type: Injectable
-  }], () => [{
-    type: void 0,
-    decorators: [{
-      type: Inject,
-      args: [DOCUMENT]
-    }]
-  }, {
-    type: HammerGestureConfig,
-    decorators: [{
-      type: Inject,
-      args: [HAMMER_GESTURE_CONFIG]
-    }]
-  }, {
-    type: Console
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Optional
-    }, {
-      type: Inject,
-      args: [HAMMER_LOADER]
-    }]
-  }], null);
+  (typeof ngDevMode === "undefined" || ngDevMode) &&
+    setClassMetadata(
+      HammerGesturesPlugin,
+      [
+        {
+          type: Injectable,
+        },
+      ],
+      () => [
+        {
+          type: void 0,
+          decorators: [
+            {
+              type: Inject,
+              args: [DOCUMENT],
+            },
+          ],
+        },
+        {
+          type: HammerGestureConfig,
+          decorators: [
+            {
+              type: Inject,
+              args: [HAMMER_GESTURE_CONFIG],
+            },
+          ],
+        },
+        {
+          type: Console,
+        },
+        {
+          type: void 0,
+          decorators: [
+            {
+              type: Optional,
+            },
+            {
+              type: Inject,
+              args: [HAMMER_LOADER],
+            },
+          ],
+        },
+      ],
+      null,
+    );
 })();
 var HammerModule = class _HammerModule {
   static ɵfac = function HammerModule_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _HammerModule)();
   };
   static ɵmod = ɵɵdefineNgModule({
-    type: _HammerModule
+    type: _HammerModule,
   });
   static ɵinj = ɵɵdefineInjector({
-    providers: [{
-      provide: EVENT_MANAGER_PLUGINS,
-      useClass: HammerGesturesPlugin,
-      multi: true,
-      deps: [DOCUMENT, HAMMER_GESTURE_CONFIG, Console, [new Optional(), HAMMER_LOADER]]
-    }, {
-      provide: HAMMER_GESTURE_CONFIG,
-      useClass: HammerGestureConfig,
-      deps: []
-    }]
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(HammerModule, [{
-    type: NgModule,
-    args: [{
-      providers: [{
+    providers: [
+      {
         provide: EVENT_MANAGER_PLUGINS,
         useClass: HammerGesturesPlugin,
         multi: true,
-        deps: [DOCUMENT, HAMMER_GESTURE_CONFIG, Console, [new Optional(), HAMMER_LOADER]]
-      }, {
+        deps: [
+          DOCUMENT,
+          HAMMER_GESTURE_CONFIG,
+          Console,
+          [new Optional(), HAMMER_LOADER],
+        ],
+      },
+      {
         provide: HAMMER_GESTURE_CONFIG,
         useClass: HammerGestureConfig,
-        deps: []
-      }]
-    }]
-  }], null, null);
+        deps: [],
+      },
+    ],
+  });
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) &&
+    setClassMetadata(
+      HammerModule,
+      [
+        {
+          type: NgModule,
+          args: [
+            {
+              providers: [
+                {
+                  provide: EVENT_MANAGER_PLUGINS,
+                  useClass: HammerGesturesPlugin,
+                  multi: true,
+                  deps: [
+                    DOCUMENT,
+                    HAMMER_GESTURE_CONFIG,
+                    Console,
+                    [new Optional(), HAMMER_LOADER],
+                  ],
+                },
+                {
+                  provide: HAMMER_GESTURE_CONFIG,
+                  useClass: HammerGestureConfig,
+                  deps: [],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      null,
+      null,
+    );
 })();
 var DomSanitizer = class _DomSanitizer {
   static ɵfac = function DomSanitizer_Factory(__ngFactoryType__) {
@@ -1731,17 +2170,27 @@ var DomSanitizer = class _DomSanitizer {
       }
       return __ngConditionalFactory__;
     },
-    providedIn: "root"
+    providedIn: "root",
   });
 };
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(DomSanitizer, [{
-    type: Injectable,
-    args: [{
-      providedIn: "root",
-      useExisting: forwardRef(() => DomSanitizerImpl)
-    }]
-  }], null, null);
+  (typeof ngDevMode === "undefined" || ngDevMode) &&
+    setClassMetadata(
+      DomSanitizer,
+      [
+        {
+          type: Injectable,
+          args: [
+            {
+              providedIn: "root",
+              useExisting: forwardRef(() => DomSanitizerImpl),
+            },
+          ],
+        },
+      ],
+      null,
+      null,
+    );
 })();
 var DomSanitizerImpl = class _DomSanitizerImpl extends DomSanitizer {
   _doc;
@@ -1755,52 +2204,74 @@ var DomSanitizerImpl = class _DomSanitizerImpl extends DomSanitizer {
       case SecurityContext.NONE:
         return value;
       case SecurityContext.HTML:
-        if (allowSanitizationBypassAndThrow(
-          value,
-          "HTML"
-          /* BypassType.Html */
-        )) {
+        if (
+          allowSanitizationBypassAndThrow(
+            value,
+            "HTML",
+            /* BypassType.Html */
+          )
+        ) {
           return unwrapSafeValue(value);
         }
         return _sanitizeHtml(this._doc, String(value)).toString();
       case SecurityContext.STYLE:
-        if (allowSanitizationBypassAndThrow(
-          value,
-          "Style"
-          /* BypassType.Style */
-        )) {
+        if (
+          allowSanitizationBypassAndThrow(
+            value,
+            "Style",
+            /* BypassType.Style */
+          )
+        ) {
           return unwrapSafeValue(value);
         }
         return value;
       case SecurityContext.SCRIPT:
-        if (allowSanitizationBypassAndThrow(
-          value,
-          "Script"
-          /* BypassType.Script */
-        )) {
+        if (
+          allowSanitizationBypassAndThrow(
+            value,
+            "Script",
+            /* BypassType.Script */
+          )
+        ) {
           return unwrapSafeValue(value);
         }
-        throw new RuntimeError(5200, (typeof ngDevMode === "undefined" || ngDevMode) && "unsafe value used in a script context");
+        throw new RuntimeError(
+          5200,
+          (typeof ngDevMode === "undefined" || ngDevMode) &&
+            "unsafe value used in a script context",
+        );
       case SecurityContext.URL:
-        if (allowSanitizationBypassAndThrow(
-          value,
-          "URL"
-          /* BypassType.Url */
-        )) {
+        if (
+          allowSanitizationBypassAndThrow(
+            value,
+            "URL",
+            /* BypassType.Url */
+          )
+        ) {
           return unwrapSafeValue(value);
         }
         return _sanitizeUrl(String(value));
       case SecurityContext.RESOURCE_URL:
-        if (allowSanitizationBypassAndThrow(
-          value,
-          "ResourceURL"
-          /* BypassType.ResourceUrl */
-        )) {
+        if (
+          allowSanitizationBypassAndThrow(
+            value,
+            "ResourceURL",
+            /* BypassType.ResourceUrl */
+          )
+        ) {
           return unwrapSafeValue(value);
         }
-        throw new RuntimeError(5201, (typeof ngDevMode === "undefined" || ngDevMode) && `unsafe value used in a resource URL context (see ${XSS_SECURITY_URL})`);
+        throw new RuntimeError(
+          5201,
+          (typeof ngDevMode === "undefined" || ngDevMode) &&
+            `unsafe value used in a resource URL context (see ${XSS_SECURITY_URL})`,
+        );
       default:
-        throw new RuntimeError(5202, (typeof ngDevMode === "undefined" || ngDevMode) && `Unexpected SecurityContext ${ctx} (see ${XSS_SECURITY_URL})`);
+        throw new RuntimeError(
+          5202,
+          (typeof ngDevMode === "undefined" || ngDevMode) &&
+            `Unexpected SecurityContext ${ctx} (see ${XSS_SECURITY_URL})`,
+        );
     }
   }
   bypassSecurityTrustHtml(value) {
@@ -1824,42 +2295,65 @@ var DomSanitizerImpl = class _DomSanitizerImpl extends DomSanitizer {
   static ɵprov = ɵɵdefineInjectable({
     token: _DomSanitizerImpl,
     factory: _DomSanitizerImpl.ɵfac,
-    providedIn: "root"
+    providedIn: "root",
   });
 };
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(DomSanitizerImpl, [{
-    type: Injectable,
-    args: [{
-      providedIn: "root"
-    }]
-  }], () => [{
-    type: void 0,
-    decorators: [{
-      type: Inject,
-      args: [DOCUMENT]
-    }]
-  }], null);
+  (typeof ngDevMode === "undefined" || ngDevMode) &&
+    setClassMetadata(
+      DomSanitizerImpl,
+      [
+        {
+          type: Injectable,
+          args: [
+            {
+              providedIn: "root",
+            },
+          ],
+        },
+      ],
+      () => [
+        {
+          type: void 0,
+          decorators: [
+            {
+              type: Inject,
+              args: [DOCUMENT],
+            },
+          ],
+        },
+      ],
+      null,
+    );
 })();
 var HydrationFeatureKind;
-(function(HydrationFeatureKind2) {
-  HydrationFeatureKind2[HydrationFeatureKind2["NoHttpTransferCache"] = 0] = "NoHttpTransferCache";
-  HydrationFeatureKind2[HydrationFeatureKind2["HttpTransferCacheOptions"] = 1] = "HttpTransferCacheOptions";
-  HydrationFeatureKind2[HydrationFeatureKind2["I18nSupport"] = 2] = "I18nSupport";
-  HydrationFeatureKind2[HydrationFeatureKind2["EventReplay"] = 3] = "EventReplay";
-  HydrationFeatureKind2[HydrationFeatureKind2["IncrementalHydration"] = 4] = "IncrementalHydration";
+(function (HydrationFeatureKind2) {
+  HydrationFeatureKind2[(HydrationFeatureKind2["NoHttpTransferCache"] = 0)] =
+    "NoHttpTransferCache";
+  HydrationFeatureKind2[
+    (HydrationFeatureKind2["HttpTransferCacheOptions"] = 1)
+  ] = "HttpTransferCacheOptions";
+  HydrationFeatureKind2[(HydrationFeatureKind2["I18nSupport"] = 2)] =
+    "I18nSupport";
+  HydrationFeatureKind2[(HydrationFeatureKind2["EventReplay"] = 3)] =
+    "EventReplay";
+  HydrationFeatureKind2[(HydrationFeatureKind2["IncrementalHydration"] = 4)] =
+    "IncrementalHydration";
 })(HydrationFeatureKind || (HydrationFeatureKind = {}));
 function hydrationFeature(ɵkind, ɵproviders = [], ɵoptions = {}) {
   return {
     ɵkind,
-    ɵproviders
+    ɵproviders,
   };
 }
 function withNoHttpTransferCache() {
   return hydrationFeature(HydrationFeatureKind.NoHttpTransferCache);
 }
 function withHttpTransferCacheOptions(options) {
-  return hydrationFeature(HydrationFeatureKind.HttpTransferCacheOptions, withHttpTransferCache(options));
+  return hydrationFeature(
+    HydrationFeatureKind.HttpTransferCacheOptions,
+    withHttpTransferCache(options),
+  );
 }
 function withI18nSupport2() {
   return hydrationFeature(HydrationFeatureKind.I18nSupport, withI18nSupport());
@@ -1868,40 +2362,64 @@ function withEventReplay2() {
   return hydrationFeature(HydrationFeatureKind.EventReplay, withEventReplay());
 }
 function withIncrementalHydration2() {
-  return hydrationFeature(HydrationFeatureKind.IncrementalHydration, withIncrementalHydration());
+  return hydrationFeature(
+    HydrationFeatureKind.IncrementalHydration,
+    withIncrementalHydration(),
+  );
 }
 function provideZoneJsCompatibilityDetector() {
-  return [{
-    provide: ENVIRONMENT_INITIALIZER,
-    useValue: () => {
-      const ngZone = inject(NgZone);
-      const isZoneless = inject(ZONELESS_ENABLED);
-      if (!isZoneless && ngZone.constructor !== NgZone) {
-        const console2 = inject(Console);
-        const message = formatRuntimeError(-5e3, "Angular detected that hydration was enabled for an application that uses a custom or a noop Zone.js implementation. This is not yet a fully supported configuration.");
-        console2.warn(message);
-      }
+  return [
+    {
+      provide: ENVIRONMENT_INITIALIZER,
+      useValue: () => {
+        const ngZone = inject(NgZone);
+        const isZoneless = inject(ZONELESS_ENABLED);
+        if (!isZoneless && ngZone.constructor !== NgZone) {
+          const console2 = inject(Console);
+          const message = formatRuntimeError(
+            -5e3,
+            "Angular detected that hydration was enabled for an application that uses a custom or a noop Zone.js implementation. This is not yet a fully supported configuration.",
+          );
+          console2.warn(message);
+        }
+      },
+      multi: true,
     },
-    multi: true
-  }];
+  ];
 }
 function provideClientHydration(...features) {
   const providers = [];
   const featuresKind = /* @__PURE__ */ new Set();
-  const hasHttpTransferCacheOptions = featuresKind.has(HydrationFeatureKind.HttpTransferCacheOptions);
-  for (const {
-    ɵproviders,
-    ɵkind
-  } of features) {
+  const hasHttpTransferCacheOptions = featuresKind.has(
+    HydrationFeatureKind.HttpTransferCacheOptions,
+  );
+  for (const { ɵproviders, ɵkind } of features) {
     featuresKind.add(ɵkind);
     if (ɵproviders.length) {
       providers.push(ɵproviders);
     }
   }
-  if (typeof ngDevMode !== "undefined" && ngDevMode && featuresKind.has(HydrationFeatureKind.NoHttpTransferCache) && hasHttpTransferCacheOptions) {
-    throw new Error("Configuration error: found both withHttpTransferCacheOptions() and withNoHttpTransferCache() in the same call to provideClientHydration(), which is a contradiction.");
+  if (
+    typeof ngDevMode !== "undefined" &&
+    ngDevMode &&
+    featuresKind.has(HydrationFeatureKind.NoHttpTransferCache) &&
+    hasHttpTransferCacheOptions
+  ) {
+    throw new Error(
+      "Configuration error: found both withHttpTransferCacheOptions() and withNoHttpTransferCache() in the same call to provideClientHydration(), which is a contradiction.",
+    );
   }
-  return makeEnvironmentProviders([typeof ngDevMode !== "undefined" && ngDevMode ? provideZoneJsCompatibilityDetector() : [], withDomHydration(), featuresKind.has(HydrationFeatureKind.NoHttpTransferCache) || hasHttpTransferCacheOptions ? [] : withHttpTransferCache({}), providers]);
+  return makeEnvironmentProviders([
+    typeof ngDevMode !== "undefined" && ngDevMode
+      ? provideZoneJsCompatibilityDetector()
+      : [],
+    withDomHydration(),
+    featuresKind.has(HydrationFeatureKind.NoHttpTransferCache) ||
+    hasHttpTransferCacheOptions
+      ? []
+      : withHttpTransferCache({}),
+    providers,
+  ]);
 }
 var VERSION = new Version("19.0.1");
 export {
@@ -1942,7 +2460,7 @@ export {
   KeyEventsPlugin as ɵKeyEventsPlugin,
   SharedStylesHost as ɵSharedStylesHost,
   getDOM as ɵgetDOM,
-  initDomAdapter as ɵinitDomAdapter
+  initDomAdapter as ɵinitDomAdapter,
 };
 /*! Bundled license information:
 

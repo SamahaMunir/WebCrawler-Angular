@@ -36,7 +36,7 @@ import {
   withJsonpSupport,
   withNoXsrfProtection,
   withRequestsMadeViaParent,
-  withXsrfConfiguration
+  withXsrfConfiguration,
 } from "./chunk-BD26NKK7.js";
 import "./chunk-FMHBNRLG.js";
 import "./chunk-WOKEHLUA.js";
@@ -79,6 +79,6 @@ export {
   HttpInterceptorHandler as ɵHttpInterceptingHandler,
   HttpInterceptorHandler as ɵHttpInterceptorHandler,
   REQUESTS_CONTRIBUTE_TO_STABILITY as ɵREQUESTS_CONTRIBUTE_TO_STABILITY,
-  withHttpTransferCache as ɵwithHttpTransferCache
+  withHttpTransferCache as ɵwithHttpTransferCache,
 };
 //# sourceMappingURL=@angular_common_http.js.map
