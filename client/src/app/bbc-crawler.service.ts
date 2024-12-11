@@ -5,7 +5,7 @@ import axios from 'axios';
   providedIn: 'root',  // This means it's globally available in the app
 })
 export class BbcCrawlerService {
-  private apiUrl = 'http://localhost:3000/api/crawl-bbc';  // URL of your Express backend
+  private apiUrl = 'http://localhost:3001/api/scraper';  // URL of your Express backend
 
   constructor() {}
 
